@@ -2,6 +2,12 @@
 
 - Sample project for testing porpuses, also I'm checking all different ways of declaring env variables/secrets. All values here are not confidential, so...
 
+# Login to fly.io
+```powershell
+choco install flyctl -y
+flyctl auth login
+```
+
 # Run Dockerfile locally (optional)
 
 ```powershell
