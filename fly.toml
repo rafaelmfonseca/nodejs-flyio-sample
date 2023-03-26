@@ -1,0 +1,44 @@
+# fly.toml file generated for nodejs-flyio-sample on 2023-03-26T19:13:57-03:00
+
+app = "nodejs-flyio-sample"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "gru"
+processes = []
+
+[env]
+FLYTOMLENV_SECRET1="Some value here"
+FLYTOMLENV_SECRET2="Another Value here"
+
+[experimental]
+    auto_rollback = true
+
+[mounts]
+    source="sample_data"
+    destination="/usr/src/app/public"
+
+[[services]]
+    http_checks = []
+    internal_port = 3000
+    processes = ["app"]
+    protocol = "tcp"
+    script_checks = []
+    [services.concurrency]
+        hard_limit = 25
+        soft_limit = 20
+        type = "connections"
+
+    [[services.ports]]
+        force_https = true
+        handlers = ["http"]
+        port = 80
+
+    [[services.ports]]
+        handlers = ["tls", "http"]
+        port = 443
+
+    [[services.tcp_checks]]
+        grace_period = "1s"
+        interval = "15s"
+        restart_limit = 0
+        timeout = "2s"
