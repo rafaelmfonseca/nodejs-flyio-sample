@@ -23,13 +23,21 @@ flyctl platform regions
 flyctl volumes create sample_data --region gru --size 1
 ```
 
-# Deploy do flyctl
+# Build app (but do not deploy)
 ```powershell
 flyctl launch --build-only
+```
+
+# Setting new secrets
+```powershell
 flyctl secrets set FLYIO_SECRET1="Some Value here from flyctl"
 flyctl secrets set FLYIO_SECRET2="Another Value here from flyctl"
-flyctl deploy
 flyctl secrets list
+```
+
+# Deploy to flyctl
+```powershell
+flyctl deploy
 ```
 
 ###  If you access: https://your-app.fly.dev/secrets, will print:
